@@ -8,7 +8,6 @@ cursos = cursos_disponibles
 
 def caso_01():
     nombre = str(input("Nombre del DICCIONARIO: "))
-
     while True:
         legajo = input("Legajo del DICCIONARIO: ") # validar ?
         if len(legajo) != 5:
@@ -31,29 +30,29 @@ def caso_02():
     for DICCIONARIO in empleados:
         if DICCIONARIO["legajo"] == legajo:
             encontrado = True
-    while True:
-        print("\n1. - Agregar Curso")
-        print("2. - Finalizar")
-        opcion = input("\nSeleccione una opcion: ")
-        if opcion == "1":
-            print("\n")
-            for i, cursos in enumerate(cursos_disponibles,1):
-                print(f"{i}. {cursos}")
-                valor = input("\nSeleccione un curso o ponga '0' para salir: ")
-                if valor == "0":
-                    print("\nNO SE AGREGO NINGUN CURSO")
+            while True:
+                print("\n1. - Agregar Curso")
+                print("2. - Finalizar")
+                opcion = input("\nSeleccione una opcion: ")
+                if opcion == "1":
+                    print("\n")
+                    for i, cursos in enumerate(cursos_disponibles,1):
+                        print(f"{i}. {cursos}")
+                        valor = input("\nSeleccione un curso o ponga '0' para salir: ")
+                        if valor == "0":
+                            print("\nNO SE AGREGO NINGUN CURSO")
+                            break
+                        elif int(valor) in range(1, len(cursos_disponibles)+1):
+                            curso_seleccionado = cursos_disponibles[int(valor)-1] #porque -1
+                            DICCIONARIO["cursos"].append(curso_seleccionado)
+                            print("DICCIONARIO:",DICCIONARIO) # agrega el curso al diccionario
+                            print("Empleados:",empleados) # porque lo agrega a la lista ???
+                            print("\nCursos Agregado Correctamente")
+                elif opcion == "2":
                     break
-                elif int(valor) in range(1, len(cursos_disponibles)+1):
-                    curso_seleccionado = cursos_disponibles[int(valor)-1] #porque -1
-                    DICCIONARIO["cursos"].append(curso_seleccionado)
-                    print("DICCIONARIO:",DICCIONARIO) # agrega el curso al diccionario
-                    print("Empleados:",empleados) # porque lo agrega a la lista ???
-                    print("\nCursos Agregado Correctamente")
-        elif opcion == "2":
+                else:
+                    print("\nOPCION INVALIDA")
             break
-        else:
-            print("\nOPCION INVALIDA")
-        break
     if not encontrado:
         print("\nNO SE ENCONTRO NINGUN DICCIONARIO")
     print("\nREALIZADO")
